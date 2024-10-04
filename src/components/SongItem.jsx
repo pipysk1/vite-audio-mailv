@@ -1,4 +1,3 @@
-import React from 'react'
 
 const SongItem = ({ image, name, desc, id }) => {
     return (
