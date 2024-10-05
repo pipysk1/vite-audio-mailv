@@ -4,21 +4,25 @@ import AlbumItem from "./AlbumItem"
 import SongItem from "./SongItem"
 
 const DisplayHome = () => {
+    const renderItems = (data, ItemComponent, title) => (
+        <div className="mb-4">
+            <h1 className="my-5 font-bold text-2xl">{title}</h1>
+            <div className="flex overflow-auto">
+                {data.map((item) => (
+                    <ItemComponent 
+                        key={item.id} 
+                        {...item} 
+                    />
+                ))}
+            </div>
+        </div>
+    )
+
     return (
         <>
             <Navbar />
-            <div className="mb-4">
-                <h1 className="my-5 font-bold text-2xl">Featured Charts</h1>
-                <div className="flex overflow-auto">
-                    {albumsData.map((item, index) => (<AlbumItem key={index} name={item.name} desc={item.desc} id={item.id} image={item.image} />))}
-                </div>
-            </div>
-            <div className="mb-4">
-                <h1 className="my-5 font-bold text-2xl">Hit</h1>
-                <div className="flex overflow-auto">
-                    {songsData.map((item, index) => (<SongItem key={index} name={item.name} desc={item.desc} id={item.id} image={item.image} />))}
-                </div>
-            </div>
+            {renderItems(albumsData, AlbumItem, "Featured Charts")}
+            {renderItems(songsData, SongItem, "Hit")}
         </>
     )
 }

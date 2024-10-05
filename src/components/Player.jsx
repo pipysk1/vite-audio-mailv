@@ -1,22 +1,22 @@
 import { assets, songsData } from '../assets/assets'
 
 const Player = () => {
+    const currentSong = songsData[0];
+
     return (
         <div className='h-[10%] bg-black flex justify-between items-center text-white px-4'>
             <div className='hidden lg:flex items-center gap-4'>
-                <img src={songsData[0].image} alt="" className='w-12' />
+                <img src={currentSong.image} alt="" className='w-12' />
                 <div>
-                    <p>{songsData[0].name}</p>
-                    <p>{songsData[0].desc.slice(0, 12)}</p>
+                    <p>{currentSong.name}</p>
+                    <p>{currentSong.desc.slice(0, 12)}</p>
                 </div>
             </div>
             <div className='flex flex-col items-center gap-1 m-auto'>
                 <div className='flex gap-4'>
-                    <img src={assets.shuffle_icon} alt="" className='w-4 cursor-pointer' />
-                    <img src={assets.prev_icon} alt="" className='w-4 cursor-pointer' />
-                    <img src={assets.play_icon} alt="" className='w-4 cursor-pointer' />
-                    <img src={assets.next_icon} alt="" className='w-4 cursor-pointer' />
-                    <img src={assets.loop_icon} alt="" className='w-4 cursor-pointer' />
+                    {['shuffle', 'prev', 'play', 'next', 'loop'].map(icon => (
+                        <img key={icon} src={assets[`${icon}_icon`]} alt="" className='w-4 cursor-pointer' />
+                    ))}
                 </div>
                 <div className='flex items-center gap-5'>
                     <p>1:06</p>
@@ -27,14 +27,10 @@ const Player = () => {
                 </div>
             </div>
             <div className='hidden lg:flex items-center gap-2 opacity-75'>
-                <img className='w-4' src={assets.play_icon} alt="" />
-                <img className='w-4' src={assets.mic_icon} alt="" />
-                <img className='w-4' src={assets.queue_icon} alt="" />
-                <img className='w-4' src={assets.speaker_icon} alt="" />
-                <img className='w-4' src={assets.volume_icon} alt="" />
-                <div className='w-20 bg-slate-50 h-1 rounded'>
-
-                </div>
+                {['play', 'mic', 'queue', 'speaker', 'volume'].map(icon => (
+                    <img key={icon} className='w-4' src={assets[`${icon}_icon`]} alt="" />
+                ))}
+                <div className='w-20 bg-slate-50 h-1 rounded'></div>
                 <img className='w-4' src={assets.mini_player_icon} alt="" />
                 <img className='w-4' src={assets.zoom_icon} alt="" />
             </div>
